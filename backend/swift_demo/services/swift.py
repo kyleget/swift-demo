@@ -230,6 +230,4 @@ class SwiftService:
             "uetr": data["uetr"],
         }
 
-        return data
-
         return details
