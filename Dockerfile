@@ -28,6 +28,7 @@ ENV NODE_ENV production
 
 WORKDIR /app
 COPY frontend/package*.json /app/
+COPY frontend/yarn.lock /app/
 
 RUN yarn
 
