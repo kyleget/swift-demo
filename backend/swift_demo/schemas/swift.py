@@ -24,7 +24,7 @@ class Amount(BaseModel):
 class PaymentEvent(BaseModel):
     fees: Amount
     from_: str
-    instructed_amount: Amount
+    instructed_amount: Amount | None
     last_update_date: datetime
     message_type: str
     received_date: datetime
