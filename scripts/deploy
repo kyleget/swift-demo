@@ -6,7 +6,7 @@ gcloud run deploy $SERVICE_NAME \
 --update-secrets="/etc/swift_demo/secrets/certificate/certificate.pem=CERTIFICATE:latest" \
 --update-secrets="/etc/swift_demo/secrets/private-key/private-key.pem=PRIVATE_KEY:latest" \
 --region $REGION \
---image "gcr.io/$GCLOUD_PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA" \
+--image "asia.gcr.io/$GCLOUD_PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA" \
 --platform "managed" \
 --quiet \
 --port 8000
