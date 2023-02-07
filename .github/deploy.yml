@@ -1,0 +1,44 @@
+name: Deploy
+
+on:
+  workflow_call:
+    inputs:
+      GCLOUD_PROJECT_ID:
+        required: true
+        type: string
+    secrets:
+      GCLOUD_RUN_SA_KEY:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    environment: ${{inputs.ENVIRONMENT}}
+    env:
+      SERVICE_NAME: swift_demo
+      GCLOUD_PROJECT_ID: "${{ inputs.GCLOUD_PROJECT_ID }}"
+      REGION: asia-southeast1-a
+
+    # Add "id-token" with the intended permissions
+    permissions:
+      contents: "read"
+      id-token: "write"
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - id: "auth"
+        name: Authenticate to Google Cloud
+        uses: "google-github-actions/auth@v1"
+        with:
+          credentials_json: "${{ secrets.GCLOUD_RUN_SA_KEY }}"
+
+      # Setup gcloud CLI
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+
+      # Deploy
+      - name: Deploy to Cloud Run
+        run: ./scripts/deploy

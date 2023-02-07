@@ -1,0 +1,20 @@
+name: Production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+    with:
+      GCLOUD_PROJECT_ID: swift-demo-377108
+    secrets: inherit
+
+  deploy:
+    uses: ./.github/workflows/deploy.yml
+    with:
+      GCLOUD_PROJECT_ID: swift-demo-377108
+    secrets: inherit
+    needs: build

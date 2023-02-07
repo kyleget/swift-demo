@@ -2,8 +2,10 @@ import axios from "axios";
 
 import { TransactionDetails, TransactionDetailsResponse } from "../types";
 
+import { settings } from "../config";
+
 export const instance = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: settings.apiUrl,
 });
 
 type GetTransactionDetailsProps = {

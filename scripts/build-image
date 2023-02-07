@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -ex
+
+gcloud builds submit \
+--config scripts/build-config.yml \
+--substitutions="_SERVICE_NAME=$SERVICE_NAME,_GCLOUD_PROJECT_ID=$GCLOUD_PROJECT_ID" .
+
+# Tag image with git hash
+gcloud container images add-tag --quiet gcr.io/$GCLOUD_PROJECT_ID/$SERVICE_NAME:latest gcr.io/$GCLOUD_PROJECT_ID/swift_demo:$GITHUB_SHA

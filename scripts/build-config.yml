@@ -1,0 +1,20 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        docker pull gcr.io/$_GCLOUD_PROJECT_ID/$_SERVICE_NAME:latest || exit 0
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "gcr.io/$_GCLOUD_PROJECT_ID/$_SERVICE_NAME:latest",
+        "--cache-from",
+        "gcr.io/$_GCLOUD_PROJECT_ID/$_SERVICE_NAME:latest",
+        "--build-arg",
+        "GCLOUD_PROJECT_ID=$_GCLOUD_PROJECT_ID",
+        ".",
+      ]
+images: ["gcr.io/$_GCLOUD_PROJECT_ID/$_SERVICE_NAME:latest"]
