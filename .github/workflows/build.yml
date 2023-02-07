@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Image
     env:
-      SERVICE_NAME: swift_demo
+      SERVICE_NAME: swift-demo
       GCLOUD_PROJECT_ID: "${{ inputs.GCLOUD_PROJECT_ID }}"
 
     # Add "id-token" with the intended permissions

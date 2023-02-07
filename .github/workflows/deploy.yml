@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     env:
-      SERVICE_NAME: swift_demo
+      SERVICE_NAME: swift-demo
       GCLOUD_PROJECT_ID: "${{ inputs.GCLOUD_PROJECT_ID }}"
       REGION: asia-southeast1-a
 
