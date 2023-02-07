@@ -3,6 +3,7 @@
 set -ex
 
 gcloud builds submit \
+--region $REGION \
 --config scripts/build-config.yml \
 --substitutions="_SERVICE_NAME=$SERVICE_NAME,_GCLOUD_PROJECT_ID=$GCLOUD_PROJECT_ID" .
 
